@@ -475,6 +475,10 @@ string_view fierceDietyAnywhereDesc   = "**OPTION CURRENTLY WIP**\n"            
                                         "be skipped.\n"                                    //
                                         "You can choose to keep the sfx anyway, but you\n" //
                                         "will have control of Link during it.";            //
+ string_view fastMaskDesc             = "Enables dpad up, down, and left to use transform\n"
+                                        "masks if you obtain them.";                       //
+ string_view fastOcarinaDesc          = "Enables dpad right to use the ocarina.";          //
+ string_view fastArrowDesc            = "Enables dpad up to sort through arrows.";         //
 /*------------------------------                                                           //
 |        LINK'S POCKET         |                                                           //
 ------------------------------*/                                                           //
@@ -639,7 +643,9 @@ string_view shuffleOcaMusicDesc      = "**OPTION CURRENTLY WIP**\n"             
 ------------------------------*/                                                           //
 string_view fastZoraSwimDesc         = "Enables Fast Zora Swimming without magic.";        //
 string_view ocarinaDiveDesc          = "Enables Ocarina Diving";                           //
-                                                                                           //
+string_view fastHMSDesc              = "Skips the cutscenes for HMS.";                     //
+string_view fastMikauDesc            = "Skips the cutscenes for Mikau the Zora.";          //                                                                      //
+string_view fastDarmaniDesc          = "Skips the cutscenes for Darmani the Goron.";       //
 /*-------------------------------                                                          //
 |   CUSTOM BUTTON MAPPING       |                                                          //
 -------------------------------*/                                                          //

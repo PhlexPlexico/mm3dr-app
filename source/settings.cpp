@@ -392,8 +392,14 @@ namespace Settings {
   Option SkipEponaRace       = Option::Bool("Skip Epona Race",        { "No", "Yes" },                                       { skipEponaRaceDesc });
   Option OcarinaDive         = Option::Bool("Ocarina Dive",           { "No", "Yes" },                                       {ocarinaDiveDesc});
   Option FastZoraSwim        = Option::Bool("Fast Zora Swimming",     { "No", "Yes" },                                       {fastZoraSwimDesc});
+  Option FastMask            = Option::Bool("DPad Masks",             { "No", "Yes" },                                       { fastMaskDesc });
+  Option FastOcarina         = Option::Bool("DPad Ocarina",           { "No", "Yes" },                                       { fastOcarinaDesc });
+  Option FastArrow           = Option::Bool("DPad Arrows",            { "No", "Yes" },                                       { fastArrowDesc });
+  Option FastHMS             = Option::Bool("Skip HMS Cutscene",      { "No", "Yes" },                                       { fastHMSDesc });
+  Option FastMikau           = Option::Bool("Skip Mikau Cutscene",    { "No", "Yes" },                                       { fastMikauDesc });
+  Option FastDarmani         = Option::Bool("Skip Darmani Cutscene",  { "No", "Yes" },                                       { fastDarmaniDesc });
 
-  std::vector<Option *> timesaverOptions = {
+  std::vector<Option *> restorationOptions = {
     //&SkipMinigamePhases,
     //&FastLabFish,
     //&FastBank,
@@ -404,8 +410,14 @@ namespace Settings {
     &FastElegyStatues,
     &FastZoraSwim,
     &OcarinaDive,
+    &FastOcarina,
+    &FastArrow,
+    &FastHMS,
+    &FastMikau,
+    &FastDarmani,
     //&SkipSongReplays,
   };
+  
 
   
 
@@ -528,7 +540,7 @@ namespace Settings {
 
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
   Menu comfort = Menu::SubMenu("Comfort", &comfortOptions);
-  Menu timeSaverSettings = Menu::SubMenu("Time Saver Settings", &timesaverOptions);
+  Menu timeSaverSettings = Menu::SubMenu("Project Restoration Settings", &restorationOptions);
   Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
   Menu cosmetics                = Menu::SubMenu("Cosmetic Settings",          &cosmeticOptions);
   Menu generateRandomizer       = Menu::Action ("Generate Randomizer",        GENERATE_MODE);
@@ -572,6 +584,8 @@ namespace Settings {
     ctx.hashIndexes[2] = hashIconIndexes[2];
     ctx.hashIndexes[3] = hashIconIndexes[3];
     ctx.hashIndexes[4] = hashIconIndexes[4];
+
+  ctx.playOption = PlayOption;
 
 ///things commented out below here need to be added or match up to SettingsContext in \mm3dr\code\include\rnd\settings.h
     ctx.logic                = Logic.Value<u8>();
@@ -653,7 +667,7 @@ namespace Settings {
     //ctx.scrubsanity          = Scrubsanity.Value<u8>();
     //ctx.shuffleMagicBeans = (ShuffleMagicBeans) ? 1 : 0;
     
-    ctx.compassesShowWotH = (CompassShowWoTH) ? 1 : 0;
+    // ctx.compassesShowWotH = (CompassShowWoTH) ? 1 : 0;
     
     ctx.generateSpoilerLog = (GenerateSpoilerLog) ? 1 : 0;
     
@@ -750,10 +764,16 @@ namespace Settings {
     ctx.startingFierceDietyMask = StartingFierceDietyMask.Value<u8>();
     ctx.startingMaskOfTruth = StartingMaskOfTruth.Value<u8>();
 
-    //Timesavers
+    //Restoration patches
     ctx.enableFastZoraSwim = (FastZoraSwim) ? 1 : 0;
     ctx.enableOcarinaDiving = (OcarinaDive) ? 1 : 0;
     ctx.enableFastElegyStatues = (FastElegyStatues) ? 1 :0;
+    ctx.enableFastMaskTransform = (FastMask) ? 1 : 0;
+    ctx.enableFastOcarina = (FastOcarina) ? 1 : 0;
+    ctx.enableFastArrowSwap = (FastArrow) ? 1 : 0;
+    ctx.skipHMSCutscenes = (FastHMS) ? 1 : 0;
+    ctx.skipMikauCutscene = (FastMikau) ? 1 : 0;
+    ctx.skipDarmaniCutscene = (FastDarmani) ? 1 : 0;
     
     //CustomButtons
     CitraPrint("Adding Custom Inputs to SettingsContext");
@@ -939,7 +959,7 @@ namespace Settings {
       for (auto op : comfortOptions) {
           op->SetToDefault();
       }
-      for (auto op : timesaverOptions) {
+      for (auto op : restorationOptions) {
           op->SetToDefault();
       }
       for (auto op : cosmeticOptions) {

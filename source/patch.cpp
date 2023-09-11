@@ -209,9 +209,9 @@ bool WriteAllPatches() {
   /*------------------------ -
   |       gSpoilerData      |
   --------------------------*/
-  
-   patchOffset = V_TO_P(GSPOILERDATA_ADDR);
-   patchSize = sizeof(SpoilerData);
+  // Comment out until working as it destroys extdata on console.
+  patchOffset = V_TO_P(GSPOILERDATA_ADDR);
+  patchSize = sizeof(SpoilerData);
   //Get the spoiler data
   SpoilerData spoilerData = GetSpoilerData();
   if (!WritePatch(patchOffset, patchSize, (char*)(&spoilerData), code, bytesWritten, totalRW, buf)) {

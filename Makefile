@@ -68,6 +68,13 @@ ifneq ($(debug),0)
 	CXXFLAGS += -g -DENABLE_DEBUG
 endif
 
+debug_print ?= 0
+ifneq ($(debug_print), 0)
+	CFLAGS += -g -DDEBUG_PRINT
+	CXXFLAGS += -g -DDEBUG_PRINT
+endif
+
+
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
@@ -174,7 +181,7 @@ all: $(BUILD) $(GFXBUILD) $(DEPSDIR) $(ROMFS_T3XFILES) $(T3XHFILES)
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 $(BUILD):
-	@git submodule update --init
+#	@git submodule update --init
 	@cp mm3dr/romfs/* ./romfs/
 	$(MAKE) -C mm3dr/code
 	@mv mm3dr/code/basecode.ips $(ROMFS)/basecode.ips
@@ -194,7 +201,7 @@ endif
 #---------------------------------------------------------------------------------
 clean:
 	@echo Cleaning app and basecode ...
-	@rm -fr $(BUILD) $(TARGET).3dsx $(OUTPUT).smdh $(TARGET).elf $(GFXBUILD) $(ROMFS)/basecode.ips source/include/patch_symbols.hpp
+	@rm -fr $(BUILD) $(TARGET).3dsx $(TARGET).cia $(TARGET).smdh $(TARGET).elf $(GFXBUILD) $(ROMFS)/basecode.ips source/include/patch_symbols.hpp
 	$(MAKE) clean -f mm3dr/code/Makefile 
 	@rm -rf mm3dr/code/build
 #---------------------------------------------------------------------------------
